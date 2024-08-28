@@ -35,7 +35,7 @@
 </head>
 <body>
     <div class="container">
-        <img id="randomImage" src="https://th.bing.com/th/id/OIP.ifoax3Ss5VWDTCNOvltuSAHaDt?rs=1&pid=ImgDetMain" alt="Random Image">
+        <img id="randomImage" src="https://source.unsplash.com/random/800x600" alt="Random Image">
         <button class="btn-share" onclick="shareOnLinkedIn()">Share on LinkedIn</button>
     </div>
 
@@ -43,15 +43,17 @@
         function shareOnLinkedIn() {
             const imageUrl = document.getElementById('randomImage').src;
             const accessToken = 'AQUM_vJ-7pXejqCHBK4nOC9aibb3OZYkTxRwBVn_sqlo0-V8tc-0H84-lpwTrIk7nJdT6VTrU80pfMVreDoxsAYXAuTj3EWhgo6yX4622aepW576AUr5qi4u0B0GwydqJafReSf9FixWwKhhqUgMgxdb4675ksUEJcroQuqejRw0t6ETVSdUpUl8E3_Q-u_gp33pq13pDC3CFTOhb6YilgEEQA5T7fW2Pbhj9csgPWf8Vaw2C1qnYNov0DMMNUJjnUi0ohAEKRC3jYWJiLsuXjg5QSq3EAd2WdiOCiqNRVr89ATpPNM7s2cCC3W70nDnzTK13xQCJV5rvVbly3_GyyCBknW4uw';
+            const personId = 'urn:li:person:abdoullah-alalgui-59b11829b';
 
             fetch('https://api.linkedin.com/v2/ugcPosts', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${accessToken}`,
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'X-Restli-Protocol-Version': '2.0.0'
                 },
                 body: JSON.stringify({
-                    author: 'urn:li:person:YOUR_PERSON_ID',
+                    author: personId,
                     lifecycleState: 'PUBLISHED',
                     specificContent: {
                         'com.linkedin.ugc.ShareContent': {
@@ -77,11 +79,12 @@
             })
             .then(response => response.json())
             .then(data => {
+                console.log(data);
                 alert('Image shared successfully!');
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('Failed to share image.');
+                alert('Failed to share image. Check the console for details.');
             });
         }
     </script>
