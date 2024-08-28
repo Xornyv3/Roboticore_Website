@@ -3,106 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LinkedIn Authorization</title>
+    <title>Share Image on LinkedIn</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+        }
+        .btn-share {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0077b5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
-    <h1>LinkedIn Authorization</h1>
-    <p id="status-message">Processing...</p>
+    <div class="container">
+        <img id="randomImage" src="https://source.unsplash.com/random/800x600" alt="Random Image">
+        <button class="btn-share" onclick="shareOnLinkedIn()">Share on LinkedIn</button>
+    </div>
 
-<script>
-          // Get the authorization code from the URL parameters
-  const urlParams = new URLSearchParams(window.location.search);
-  const authorizationCode = urlParams.get('code');
+    <script>
+        function shareOnLinkedIn() {
+            const imageUrl = document.getElementById('randomImage').src;
+            const accessToken = 'AQUM_vJ-7pXejqCHBK4nOC9aibb3OZYkTxRwBVn_sqlo0-V8tc-0H84-lpwTrIk7nJdT6VTrU80pfMVreDoxsAYXAuTj3EWhgo6yX4622aepW576AUr5qi4u0B0GwydqJafReSf9FixWwKhhqUgMgxdb4675ksUEJcroQuqejRw0t6ETVSdUpUl8E3_Q-u_gp33pq13pDC3CFTOhb6YilgEEQA5T7fW2Pbhj9csgPWf8Vaw2C1qnYNov0DMMNUJjnUi0ohAEKRC3jYWJiLsuXjg5QSq3EAd2WdiOCiqNRVr89ATpPNM7s2cCC3W70nDnzTK13xQCJV5rvVbly3_GyyCBknW4uw';
 
-  if (authorizationCode) {
-    // Exchange the authorization code for an access token
-    fetch('https://www.linkedin.com/oauth/v2/accessToken', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: new URLSearchParams({
-        grant_type: 'authorization_code',
-        code: authorizationCode,
-        redirect_uri: 'https://xornyv3.github.io/Roboticore_Website/redirect.html', // Your redirect URI
-        client_id: '78ej28syhnc6oh', // Your LinkedIn Client ID
-        client_secret: 'MkOnibH8qfkQMxOK' // Your LinkedIn Client Secret
-      })
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Access Token:', data.access_token);
-      // Store the access token in localStorage or a secure location
-      localStorage.setItem('linkedin_access_token', data.access_token);
-      // Redirect or update the UI
-      window.location.href = 'your_main_page.html'; // Redirect to your main page or update UI
-    })
-    .catch(error => console.error('Error:', error));
-  } else {
-    console.error('Authorization code not found in URL');
-  }
-
-        function postCertificateToLinkedIn(accessToken, state) {
-            const certificate = {
-                'JohnDoe': {
-                    imageUrl: 'path_to_johndoe_image.jpg',
+            fetch('https://api.linkedin.com/v2/ugcPosts', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`,
+                    'Content-Type': 'application/json'
                 },
-                'Mehdi-Bahlaoui': {
-                    imageUrl: 'path_to_mehdi_image.jpg',
-                },
-                'Abdoullah-Alalgui': {
-                    imageUrl: 'img/abdo.jpeg',
-                },
-                // Add more certificates as needed
-            };
-
-            const imageUrl = certificate[state]?.imageUrl;
-
-            if (imageUrl) {
-                const apiUrl = 'https://api.linkedin.com/v2/shares';
-                const postData = {
-                    content: {
-                        contentEntities: [
-                            {
-                                entityLocation: imageUrl,
-                                thumbnails: [
-                                    {
-                                        resolvedUrl: imageUrl
+                body: JSON.stringify({
+                    author: 'urn:li:person:YOUR_PERSON_ID',
+                    lifecycleState: 'PUBLISHED',
+                    specificContent: {
+                        'com.linkedin.ugc.ShareContent': {
+                            'shareContent': {
+                                'shareMediaCategory': 'IMAGE',
+                                'media': [{
+                                    'status': 'READY',
+                                    'description': {
+                                        'text': 'Check out this random image!'
+                                    },
+                                    'media': imageUrl,
+                                    'title': {
+                                        'text': 'Random Image'
                                     }
-                                ]
+                                }]
                             }
-                        ],
-                        title: 'Certificate Verification'
+                        }
                     },
-                    distribution: {
-                        linkedInDistributionTarget: {}
-                    },
-                    owner: 'urn:li:person:{your_person_urn}', // Replace with your LinkedIn person URN
-                    subject: 'Check out this certificate!',
-                    text: {
-                        text: 'I have verified my certificate. Check it out!'
+                    visibility: {
+                        'com.linkedin.ugc.MemberNetworkVisibility': 'PUBLIC'
                     }
-                };
-
-                fetch(apiUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${accessToken}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(postData)
                 })
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('status-message').innerText = 'Certificate posted successfully!';
-                })
-                .catch(error => {
-                    console.error('Error posting certificate to LinkedIn:', error);
-                    document.getElementById('status-message').innerText = 'Error posting certificate to LinkedIn.';
-                });
-            } else {
-                document.getElementById('status-message').innerText = 'Invalid certificate ID.';
-            }
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Image shared successfully!');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to share image.');
+            });
         }
     </script>
 </body>
