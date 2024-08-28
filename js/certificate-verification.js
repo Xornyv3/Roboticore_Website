@@ -28,62 +28,14 @@ if (validCertificates[id]) {
     const downloadButton = document.getElementById('download-button');
     downloadButton.href = certificate.imageUrl;
 
+    // Set LinkedIn share URL
+    const linkedinButton = document.getElementById('linkedin-button');
+    const linkedinShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}&title=Check%20out%20my%20certificate&summary=I%20have%20completed%20the%20certificate%20course&source=${encodeURIComponent(window.location.href)}`;
+    linkedinButton.href = linkedinShareUrl;
+
     // Show info-box and buttons
     document.getElementById('info-box').style.display = 'block';
     document.getElementById('certificate-buttons').style.display = 'flex'; // Ensure flex display for buttons
-
-    // LinkedIn share button event
-    document.getElementById('linkedin-button').addEventListener('click', () => {
-        const shareUrl = `https://api.linkedin.com/v2/ugcPosts`;
-        const accessToken = 'YOUR_ACCESS_TOKEN'; // Replace with your access token
-        const userId = 'YOUR_USER_ID'; // Replace with your LinkedIn profile ID
-
-        const postData = {
-            author: `urn:li:person:${userId}`,
-            lifecycleState: 'PUBLISHED',
-            specificContent: {
-                'com.linkedin.ugc.ShareContent': {
-                    shareContent: {
-                        shareMediaCategory: 'IMAGE',
-                        media: [
-                            {
-                                status: 'READY',
-                                originalUrl: certificate.imageUrl,
-                                description: {
-                                    text: certificate.message
-                                }
-                            }
-                        ],
-                        text: {
-                            text: certificate.message
-                        }
-                    },
-                    shareCommentary: {
-                        text: certificate.message
-                    }
-                }
-            },
-            visibility: {
-                'com.linkedin.ugc.MemberNetworkVisibility': 'PUBLIC'
-            }
-        };
-
-        fetch(shareUrl, {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${accessToken}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(postData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Post shared:', data);
-        })
-        .catch(error => {
-            console.error('Error sharing post:', error);
-        });
-    });
 } else {
     document.getElementById('verification-message').innerText = 'Invalid Certificate!';
     document.getElementById('info-box').style.display = 'none';
