@@ -107,14 +107,19 @@
                 <p><i class="fa fa-calendar-alt"></i> Date: August 10, 2024</p>
                 <p><i class="fa fa-map-marker-alt"></i> Location: Ensam Rabat</p>
                 <p><i class="fa fa-clock"></i> Duration: 4 weeks</p>
+                <!-- Buttons for download and LinkedIn post -->
+                <div id="certificate-buttons" style="display: none; margin-top: 20px;">
+                    <a id="download-button" class="btn" href="#" download="certificate.jpg">
+                        Download Certificate <i class="fas fa-download"></i>
+                    </a>                    
+                    <a id="linkedin-button" class="btn" href="#" target="_blank">
+                        Post on LinkedIn <i class="fab fa-linkedin-in"></i>
+                    </a>                                                                  
+                </div>                
             </div>
         </div>
         <h1 id="verification-message">Checking certificate...</h1>
     </div>
-    
-     
-
-
 
       <!-- Footer Start -->
       <div class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
@@ -191,38 +196,8 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script src="js/script.js"></script>
-    <script>
-                // Get the 'id' parameter from the URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const id = urlParams.get('id');
-
-        const validCertificates = {
-            'JohnDoe': {
-                message: 'Certificate for John Doe is Verified!',
-                imageUrl: 'path_to_johndoe_image.jpg',
-            },
-            'Mehdi-Bahlaoui': {
-                message: 'Certificate for Mehdi Bahlaoui is Verified!',
-                imageUrl: 'path_to_mehdi_image.jpg',
-            },
-            'Abdoullah-Alalgui': {
-                message: 'Certificate for Abdoullah Alalgui is Verified!',
-                imageUrl: 'img/abdo.jpeg',
-            },
-            // Add more names as needed
-        };
-
-        // Check if the ID matches any valid certificate
-        if (validCertificates[id]) {
-            document.getElementById('verification-message').innerText = validCertificates[id].message;
-            document.getElementById('certificate-image').src = validCertificates[id].imageUrl;
-            document.getElementById('info-box').style.display = 'block';
-        } else {
-            document.getElementById('verification-message').innerText = 'Invalid Certificate!';
-            document.getElementById('info-box').style.display = 'none';
-        }
-
-
-    </script>
+    <script src="js/certificate-verification.js"></script>
+    
+    
 </body>
 </html>
