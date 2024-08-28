@@ -33,10 +33,10 @@ if (validCertificates[id]) {
     document.getElementById('certificate-buttons').style.display = 'flex'; // Ensure flex display for buttons
 
     // LinkedIn share button event
-    document.getElementById('linkedin-share-button').addEventListener('click', () => {
+    document.getElementById('linkedin-button').addEventListener('click', () => {
         const shareUrl = `https://api.linkedin.com/v2/ugcPosts`;
-        const accessToken = 'AQUM_vJ-7pXejqCHBK4nOC9aibb3OZYkTxRwBVn_sqlo0-V8tc-0H84-lpwTrIk7nJdT6VTrU80pfMVreDoxsAYXAuTj3EWhgo6yX4622aepW576AUr5qi4u0B0GwydqJafReSf9FixWwKhhqUgMgxdb4675ksUEJcroQuqejRw0t6ETVSdUpUl8E3_Q-u_gp33pq13pDC3CFTOhb6YilgEEQA5T7fW2Pbhj9csgPWf8Vaw2C1qnYNov0DMMNUJjnUi0ohAEKRC3jYWJiLsuXjg5QSq3EAd2WdiOCiqNRVr89ATpPNM7s2cCC3W70nDnzTK13xQCJV5rvVbly3_GyyCBknW4uw'; // Replace with your access token
-        const userId = 'abdoullah-alalgui-59b11829b'; // Replace with your LinkedIn profile ID
+        const accessToken = 'YOUR_ACCESS_TOKEN'; // Replace with your access token
+        const userId = 'YOUR_USER_ID'; // Replace with your LinkedIn profile ID
 
         const postData = {
             author: `urn:li:person:${userId}`,
