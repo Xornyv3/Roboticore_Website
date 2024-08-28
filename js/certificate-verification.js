@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', function () {
+    
 // Get the 'id' parameter from the URL
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
@@ -89,3 +91,5 @@ if (validCertificates[id]) {
     document.getElementById('info-box').style.display = 'none';
     document.getElementById('certificate-buttons').style.display = 'none'; // Hide buttons for invalid certificates
 }
+
+});
