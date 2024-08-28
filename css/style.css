@@ -30,6 +30,63 @@
     z-index: 99;
 }
 
+
+/* CSS for buttons */
+#certificate-buttons {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    margin-top: 20px; /* Space above the buttons */
+}
+
+#certificate-buttons .btn {
+    padding: 12px 20px; /* Larger padding for bigger buttons */
+    border-radius: 25px; /* Rounded ends */
+    font-size: 16px; /* Larger text */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center text */
+    text-decoration: none;
+    font-weight: 500; /* Bold text */
+    margin-bottom: 20px; /* Space below each button */
+}
+
+#certificate-buttons .btn:last-child {
+    margin-bottom: 0; /* Remove margin from the last button */
+}
+
+#download-button {
+    background-color: #f0f0f0; /* Lighter background */
+    color: #333; /* Dark text color */
+    border: 2px solid #ccc; /* Border color */
+}
+
+#download-button:hover {
+    background-color: #e0e0e0; /* Slightly darker on hover */
+    border-color: #bbb; /* Darker border on hover */
+}
+
+#linkedin-button {
+    background-color: #0077b5; /* LinkedIn blue */
+    color: white; /* White text color */
+    border: none; /* No border */
+}
+
+#linkedin-button:hover {
+    background-color: #005582; /* Darker blue on hover */
+}
+
+#linkedin-button i {
+    color: white; /* White icon color */
+    margin-left: 8px; /* Space between text and icon */
+}
+
+#download-button i {
+    color: #333; /* Dark icon color */
+    margin-left: 8px; /* Space between text and icon */
+}
+
+
+
 /*** Spinner ***/
 #spinner {
     opacity: 0;
