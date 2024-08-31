@@ -609,16 +609,16 @@
                         <form>
                             <div class="row g-3">
                                 <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control border-0" placeholder="Your Name" style="height: 55px;">
+                                    <input type="text" id="name" class="form-control border-0" placeholder="Your Name" style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="email" class="form-control border-0" placeholder="Your Email" style="height: 55px;">
+                                    <input type="email" id="email" class="form-control border-0" placeholder="Your Email" style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control border-0" placeholder="Your Mobile" style="height: 55px;">
+                                    <input type="text" id="mobile" class="form-control border-0" placeholder="Your Mobile" style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <select class="form-select border-0" style="height: 55px;">
+                                    <select class="form-select border-0" style="height: 55px;" id="object">
                                         <option selected>Your Object</option>
                                         <option value="1">Collaboration</option>
                                         <option value="2">Sponsorship</option>
@@ -626,10 +626,10 @@
                                     </select>
                                 </div>
                                 <div class="col-12">
-                                    <textarea class="form-control border-0" placeholder="Your text here"></textarea>
+                                    <textarea class="form-control border-0" id="message" placeholder="Your text here"></textarea>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                                    <button class="btn btn-primary w-100 py-3" type="submit" >Submit</button>
                                 </div>
                             </div>
                         </form>
@@ -832,44 +832,74 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="lib/isotope/isotope.pkgd.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script src="js/script.js"></script>
-<script>
-    // Initialize EmailJS with your Public API Key
-    emailjs.init("yvTm99zrrbhD7BfJr");
+    <script >
+        function sendMail(event) {
+            event.preventDefault(); // Prevent default form submission
+        
+            var objectValue = document.getElementById("object").value;
+            var objectText = "";
+        
+            // Map object values to their respective strings
+            switch (objectValue) {
+                case "1":
+                    objectText = "Collaboration";
+                    break;
+                case "2":
+                    objectText = "Sponsorship";
+                    break;
+                case "3":
+                    objectText = "Other";
+                    break;
+                default:
+                    objectText = "Unknown";
+            }
+        
+            var params = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                mobile: document.getElementById("mobile").value, // Include mobile in params if needed
+                object: objectText, // Use mapped value for object
+                message: document.getElementById("message").value,
+            };
+        
+            const serviceID = "service_3qhwjes";
+            const templateID = "template_6oy1w36";
+        
+            emailjs.send(serviceID, templateID, params)
+                .then(response => {
+                    document.getElementById("name").value = "";
+                    document.getElementById("email").value = "";
+                    document.getElementById("mobile").value = ""; // Clear mobile field if needed
+                    document.getElementById("object").value = ""; // Clear object field if needed
+                    document.getElementById("message").value = "";
+                    console.log("Success:", response);
+                    alert("Your message has been sent successfully!");
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("Failed to send the message. Please try again.");
+                });
+        }
+        
+        // Attach event listener to form submission
+        document.querySelector("form").addEventListener("submit", sendMail);
+        
+        
+    </script>
 
-    document.querySelector("#contact-form").addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        // Get form values using name attributes
-        const name = document.querySelector('input[name="name"]').value;
-        const email = document.querySelector('input[name="email"]').value;
-        const mobile = document.querySelector('input[name="mobile"]').value;
-        const object = document.querySelector('select[name="object"]').value;
-        const message = document.querySelector('textarea[name="message"]').value;
-
-        // Send email using EmailJS
-        emailjs.send("service_3qhwjes", "template_6oy1w36", {
-            from_name: name,
-            from_email: email,
-            mobile: mobile,
-            object: object,
-            message: message
-        })
-        .then(response => {
-            console.log("Sent successfully:", response);
-            alert("Your message has been sent!");
-            document.querySelector("#contact-form").reset(); // Optionally clear the form
-        })
-        .catch(error => {
-            console.error("Error sending email:", error);
-            alert("There was an error sending your message. Please try again later.");
-        });
-    });
-</script>
-
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("yvTm99zrrbhD7BfJr");
+      })();
+    </script>
 </body>
 
 </html>
