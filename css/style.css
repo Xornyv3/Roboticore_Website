@@ -174,20 +174,23 @@
 
 .verification-message {
     font-size: 1.2rem; /* Adjust size as needed */
-    color: #b0b0b0; /* Light grey color */
+    color: #b0b0b0; /* Light grey color for text */
     font-family: 'Roboto', sans-serif; /* Choose a professional font */
     display: flex;
     align-items: center;
+    justify-content: center; /* Center the text horizontally */
     gap: 10px;
+    text-align: center; /* Center text alignment */
 }
 
 .verification-message::before {
     content: '\f00c'; /* FontAwesome checkmark icon */
     font-family: 'Font Awesome 5 Free'; /* FontAwesome 5 Free for icons */
     font-weight: 900; /* Ensure the icon is bold */
-    color: #28a745; /* Green color for the icon */
+    color: #b0b0b0; /* Grey color for the icon */
     font-size: 1.5rem; /* Icon size */
 }
+
 
 
 
