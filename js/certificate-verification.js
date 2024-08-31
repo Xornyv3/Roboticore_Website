@@ -28,10 +28,15 @@ if (validCertificates[id]) {
     const downloadButton = document.getElementById('download-button');
     downloadButton.href = certificate.imageUrl;
 
-    // Set LinkedIn share URL
+    // Set LinkedIn button action to open Certifications and Licenses page
     const linkedinButton = document.getElementById('linkedin-button');
-    const linkedinShareUrl = https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}&title=Check%20out%20my%20certificate&summary=I%20have%20completed%20the%20certificate%20course&source=${encodeURIComponent(window.location.href)};
-    linkedinButton.href = linkedinShareUrl;
+    linkedinButton.addEventListener('click', function() {
+        // Open the LinkedIn Certification and Licenses page
+        window.open('https://www.linkedin.com/in/user/edit/forms/certification/new/?profileFormEntryPoint=PROFILE_COMPLETION_HUB', '_blank');
+
+        // Provide instructions for filling out the form
+        alert(`To add your certificate:\n\n1. Enter the Name: Arduino Certificate\n2. Enter the Company: RobotiCore Club\n3. Upload the image from: ${certificate.imageUrl}\n4. Click Save.`);
+    });
 
     // Show info-box and buttons
     document.getElementById('info-box').style.display = 'block';
