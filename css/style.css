@@ -173,13 +173,15 @@
 }
 
 .verification-message {
-    font-size: 1.2rem; /* Adjust size as needed */
+    font-size: 1rem; /* Adjust size as needed */
     color: #b0b0b0; /* Light grey color for text */
     font-family: 'Roboto', sans-serif; /* Choose a professional font */
     display: flex;
-    text-align: center;
-    width: 100%;
-    margin-top: 30px;
+    align-items: center;
+    justify-content: center; /* Center the text horizontally */
+    gap: 10px; /* Space between icon and text */
+    text-align: center; /* Center text alignment */
+    margin: 20px 0; /* Adjust margin as needed */
 }
 
 .verification-message::before {
@@ -188,7 +190,9 @@
     font-weight: 900; /* Ensure the icon is bold */
     color: #b0b0b0; /* Grey color for the icon */
     font-size: 1.5rem; /* Icon size */
+    margin-right: 10px; /* Space between icon and text */
 }
+
 
 
 
