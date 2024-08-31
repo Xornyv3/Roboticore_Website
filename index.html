@@ -832,10 +832,44 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="lib/isotope/isotope.pkgd.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
-
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script src="js/script.js"></script>
+<script>
+    // Initialize EmailJS with your Public API Key
+    emailjs.init("yvTm99zrrbhD7BfJr");
+
+    document.querySelector("#contact-form").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Get form values using name attributes
+        const name = document.querySelector('input[name="name"]').value;
+        const email = document.querySelector('input[name="email"]').value;
+        const mobile = document.querySelector('input[name="mobile"]').value;
+        const object = document.querySelector('select[name="object"]').value;
+        const message = document.querySelector('textarea[name="message"]').value;
+
+        // Send email using EmailJS
+        emailjs.send("service_3qhwjes", "template_6oy1w36", {
+            from_name: name,
+            from_email: email,
+            mobile: mobile,
+            object: object,
+            message: message
+        })
+        .then(response => {
+            console.log("Sent successfully:", response);
+            alert("Your message has been sent!");
+            document.querySelector("#contact-form").reset(); // Optionally clear the form
+        })
+        .catch(error => {
+            console.error("Error sending email:", error);
+            alert("There was an error sending your message. Please try again later.");
+        });
+    });
+</script>
+
 </body>
 
 </html>
