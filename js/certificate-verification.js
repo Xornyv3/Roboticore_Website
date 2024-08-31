@@ -42,7 +42,7 @@ if (validCertificates[id]) {
             alert('Please allow pop-ups for this site to add your certificate.');
         } else {
             // Provide instructions for filling out the form
-            alert(`To add your certificate:\n\n1. Enter the Name: Arduino Certificate\n2. Enter the Company: RobotiCore Club\n3. Enter your ID: ${id}\n4. Copy this URL and paste it in the "Diplome URL" field: ${window.location.href}\n5. Download the certificate image and add it as Media.\n6. Click Save.`);
+            alert(`To add your certificate:\n\n1. Enter the Name: Arduino Certificate\n2. Enter the Company: RobotiCore Club\n3. Enter your ID: ${id}\n4. Copy this URL and paste it in the "Diploma URL"\n5. Download the certificate image and add it as Media.\n6. Click Save.\n\nNote: If LinkedIn doesn't open your page, please make sure you are signed in or connected to LinkedIn first.`);
         }
     });
 
