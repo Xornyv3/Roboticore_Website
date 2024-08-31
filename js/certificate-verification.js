@@ -1,4 +1,4 @@
- // Get the 'id' parameter from the URL
+// Get the 'id' parameter from the URL
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 
@@ -30,7 +30,7 @@ if (validCertificates[id]) {
 
     // Set LinkedIn share URL
     const linkedinButton = document.getElementById('linkedin-button');
-    const linkedinShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}&title=Check%20out%20my%20certificate&summary=I%20have%20completed%20the%20certificate%20course&source=${encodeURIComponent(window.location.href)}`;
+    const linkedinShareUrl = https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}&title=Check%20out%20my%20certificate&summary=I%20have%20completed%20the%20certificate%20course&source=${encodeURIComponent(window.location.href)};
     linkedinButton.href = linkedinShareUrl;
 
     // Show info-box and buttons
