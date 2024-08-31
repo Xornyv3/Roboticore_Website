@@ -33,10 +33,17 @@ if (validCertificates[id]) {
     linkedinButton.addEventListener('click', function() {
         // Open the LinkedIn Certification and Licenses page
         const linkedInCertificationUrl = 'https://www.linkedin.com/in/me/edit/forms/certification/new/?profileFormEntryPoint=PROFILE_COMPLETION_HUB';
-        window.open(linkedInCertificationUrl, '_blank');
 
-        // Provide instructions for filling out the form
-        alert(`To add your certificate:\n\n1. Enter the Name: Arduino Certificate\n2. Enter the Company: RobotiCore Club\n3. Upload the image from: ${certificate.imageUrl}\n4. Click Save.`);
+        // Attempt to open the URL in a new tab
+        const newWindow = window.open(linkedInCertificationUrl, '_blank');
+
+        // If the new window was blocked by the browser, notify the user
+        if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+            alert('Please allow pop-ups for this site to add your certificate.');
+        } else {
+            // Provide instructions for filling out the form
+            alert(`To add your certificate:\n\n1. Enter the Name: Arduino Certificate\n2. Enter the Company: RobotiCore Club\n3. Upload the image from: ${certificate.imageUrl}\n4. Click Save.`);
+        }
     });
 
     // Show info-box and buttons
