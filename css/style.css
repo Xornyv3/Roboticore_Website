@@ -172,13 +172,23 @@
     margin: 5px 0; /* Adjust the spacing between the info elements */
 }
 
-#verification-message {
-    font-size: 24px;
-    color: #333;
-    text-align: center;
-    width: 100%;
-    margin-top: 30px;
+.verification-message {
+    font-size: 1.2rem; /* Adjust size as needed */
+    color: #b0b0b0; /* Light grey color */
+    font-family: 'Roboto', sans-serif; /* Choose a professional font */
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
+
+.verification-message::before {
+    content: '\f00c'; /* FontAwesome checkmark icon */
+    font-family: 'Font Awesome 5 Free'; /* FontAwesome 5 Free for icons */
+    font-weight: 900; /* Ensure the icon is bold */
+    color: #28a745; /* Green color for the icon */
+    font-size: 1.5rem; /* Icon size */
+}
+
 
 
 
