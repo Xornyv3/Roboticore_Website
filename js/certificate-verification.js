@@ -3,16 +3,12 @@ const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 
 const validCertificates = {
-    'JohnDoe': {
-        message: 'Certificate for John Doe is Verified!',
-        imageUrl: 'path_to_johndoe_image.jpg',
-    },
     'Mehdi-Bahlaoui': {
-        message: 'Certificate for Mehdi Bahlaoui is Verified!',
-        imageUrl: 'path_to_mehdi_image.jpg',
+        message: 'Certificate for Mehdi Bahlaoui is Verified',
+        imageUrl: 'img/mehdi.jpg',
     },
     'Abdoullah-Alalgui': {
-        message: 'Certificate for Abdoullah Alalgui is Verified!',
+        message: 'Certificate for Abdoullah Alalgui is Verified',
         imageUrl: 'img/abdo.jpeg',
     },
     // Add more names as needed
