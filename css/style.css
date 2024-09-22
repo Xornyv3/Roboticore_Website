@@ -1,3 +1,16 @@
+::-webkit-scrollbar {
+    display: none;
+  }
+  
+  body {
+    overflow: -webkit-paged-x;
+    -webkit-overflow-scrolling: touch; 
+  }
+
+  body {
+    scrollbar-width: none; 
+  }
+    
 /********** Template CSS **********/
 :root {
     --primary: rgba(0, 0, 0, 0.75);
@@ -30,6 +43,10 @@
     z-index: 99;
 }
 
+
+#middletext{
+    margin-bottom: -150px !important;
+}
 
 /* CSS for buttons */
 #certificate-buttons {
@@ -172,29 +189,13 @@
     margin: 5px 0; /* Adjust the spacing between the info elements */
 }
 
-.verification-message {
-    font-size: 1rem; /* Adjust size as needed */
-    color: #b0b0b0; /* Light grey color for text */
-    font-family: 'Roboto', sans-serif; /* Choose a professional font */
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Center the text horizontally */
-    gap: 10px; /* Space between icon and text */
-    text-align: center; /* Center text alignment */
-    margin: 30px 0; /* Adjust margin as needed */
+#verification-message {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    width: 100%;
+    margin-top: 30px;
 }
-
-.verification-message::before {
-    content: '\f00c'; /* FontAwesome checkmark icon */
-    font-family: 'Font Awesome 5 Free'; /* FontAwesome 5 Free for icons */
-    font-weight: 900; /* Ensure the icon is bold */
-    color: #b0b0b0; /* Grey color for the icon */
-    font-size: 1.5rem; /* Icon size */
-    margin-right: 10px; /* Space between icon and text */
-}
-
-
-
 
 
 
@@ -646,7 +647,7 @@
 }
 
 .page-header {
-    background: linear-gradient(rgba(53, 53, 53, .7), rgba(53, 53, 53, .7)), url(../img/carousel-1.jpg) center center no-repeat;
+    background:  url(../img/bgg.jpg) center center no-repeat;
     background-size: cover;
 }
 
@@ -1126,6 +1127,10 @@
     border: 20px;
 }
 
+.gear_container:hover,
+.gear_container:active {
+    animation: rotate 2s linear infinite;
+}
 
 @keyframes rotate {
     from {
@@ -1308,15 +1313,17 @@
 @media (max-width: 991px) {
     .logo-container{
         display: block;
-        width: 80px; 
-        height: 80px;
-        margin-top: -10px;
+        width: 120px; 
+        height: 120px;
     }
     .gear_container{
-        width: 80px; 
-        height: 80px;
+        width: 120px; 
+        height: 120px;
     }
     .whirlwind-pics{
         margin-left: -70px;
+    }
+    h2, .h2{
+        font-size: calc(1.3rem + .9vw);    
     }
 }
