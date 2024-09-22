@@ -1,47 +1,3 @@
-// Function to post content to LinkedIn (make sure to call this after getting access token)
-function postToLinkedIn(certificateImageUrl) {
-    const accessToken = localStorage.getItem('linkedin_access_token');
-    
-    if (!accessToken) {
-        console.error('Access token not found');
-        return;
-    }
-
-    fetch('https://api.linkedin.com/v2/shares', {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json',
-            'X-Restli-Protocol-Version': '2.0.0'
-        },
-        body: JSON.stringify({
-            content: {
-                contentEntities: [
-                    {
-                        entityLocation: certificateImageUrl,
-                        thumbnail: {
-                            resolvedUrl: certificateImageUrl
-                        }
-                    }
-                ],
-                title: 'Certificate Verification',
-                description: 'Check out this certificate verification image.'
-            },
-            distribution: {
-                linkedInDistributionTarget: {}
-            },
-            owner: 'urn:li:person:{your_person_urn}', // Replace with actual person URN
-            subject: 'Certificate Verification',
-            text: {
-                text: 'Here is my verified certificate!'
-            }
-        })
-    })
-    .then(response => response.json())
-    .then(data => console.log('Post Success:', data))
-    .catch(error => console.error('Post Error:', error));
-}
-
 // Get the 'id' parameter from the URL
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
@@ -72,15 +28,23 @@ if (validCertificates[id]) {
     const downloadButton = document.getElementById('download-button');
     downloadButton.href = certificate.imageUrl;
 
-    // LinkedIn OAuth Authorization
-    const clientId = '78ej28syhnc6oh';
-    const redirectUri = encodeURIComponent('https://xornyv3.github.io/Roboticore_Website/redirect.html'); // Your redirect URI
-    const state = encodeURIComponent(id); // Pass the certificate ID as state
-
-    const authUrl = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&state=${state}&scope=r_liteprofile%20r_emailaddress%20w_member_social`;
-
+    // Set LinkedIn button action to open Certifications and Licenses page
     const linkedinButton = document.getElementById('linkedin-button');
-    linkedinButton.href = authUrl;
+    linkedinButton.addEventListener('click', function() {
+        // Open the LinkedIn Certification and Licenses page
+        const linkedInCertificationUrl = 'https://www.linkedin.com/in/me/edit/forms/certification/new/?profileFormEntryPoint=PROFILE_COMPLETION_HUB';
+
+        // Attempt to open the URL in a new tab
+        const newWindow = window.open(linkedInCertificationUrl, '_blank');
+
+        // If the new window was blocked by the browser, notify the user
+        if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+            alert('Please allow pop-ups for this site to add your certificate.');
+        } else {
+            // Provide instructions for filling out the form
+            alert(`To add your certificate:\n\n1. Enter the Name: Arduino Certificate\n2. Enter the Company: RobotiCore Club\n3. Enter your ID: ${id}\n4. Copy this URL and paste it in the "Diploma URL"\n5. Download the certificate image and add it as Media.\n6. Click Save.\n\nNote: If LinkedIn doesn't open your page, please make sure you are signed in or connected to LinkedIn first.`);
+        }
+    });
 
     // Show info-box and buttons
     document.getElementById('info-box').style.display = 'block';
@@ -89,36 +53,4 @@ if (validCertificates[id]) {
     document.getElementById('verification-message').innerText = 'Invalid Certificate!';
     document.getElementById('info-box').style.display = 'none';
     document.getElementById('certificate-buttons').style.display = 'none'; // Hide buttons for invalid certificates
-}
-
-// Check for LinkedIn code in redirect
-const redirectUrlParams = new URLSearchParams(window.location.search);
-const code = redirectUrlParams.get('code');
-const state = redirectUrlParams.get('state');
-
-if (code) {
-    const clientId = '78ej28syhnc6oh';
-    const clientSecret = 'MkOnibH8qfkQMxOK';
-    const redirectUri = 'https://xornyv3.github.io/Roboticore_Website/redirect.html';
-
-    fetch('https://www.linkedin.com/oauth/v2/accessToken', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: new URLSearchParams({
-            grant_type: 'authorization_code',
-            code: code, // The code you received from LinkedIn
-            redirect_uri: redirectUri,
-            client_id: clientId,
-            client_secret: clientSecret
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Access Token:', data.access_token);
-        localStorage.setItem('linkedin_access_token', data.access_token);
-        window.location.href = `https://xornyv3.github.io/Roboticore_Website/?id=${state}`;
-    })
-    .catch(error => console.error('Access Token Error:', error));
 }

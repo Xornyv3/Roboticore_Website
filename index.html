@@ -51,8 +51,8 @@
         <div class="row gx-0 d-none d-lg-flex">
             <div class="col-lg-7 px-5 text-start">
                 <div class="h-100 d-inline-flex align-items-center py-3 me-4">
-                    <small class="fa fa-map-marker-alt text-primary me-2"></small>
-                    <small>Ensam Rabat</small>
+                    <small class="fa fa-map-marker-alt me-3"></small>
+                    <small>Ensam Rabat, Morocco</small>
                 </div>
             </div>
             <div class="col-lg-5 px-5 text-end">
@@ -80,12 +80,14 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="index.html" class="nav-item nav-link active">Home</a>
-                <a href="#about" class="nav-item nav-link">About</a>
-                <a href="#events" class="nav-item nav-link">Events</a>
-                <a href="#achievements" class="nav-item nav-link">Achievements</a>
-                <a href="#projects" class="nav-item nav-link">Projects</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+                <a href="events.html" class="nav-item nav-link">Events</a>
+                <a href="achievements.html" class="nav-item nav-link">Achievements</a>
+                <a href="projects.html" class="nav-item nav-link">Projects</a>
+                <a href="team.html" class="nav-item nav-link">Team</a>
+                <a href="timeline.html" class="nav-item nav-link">Timeline</a>
             </div>
-            <a href="#contact" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Contact<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="contact.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Contact<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
     <!-- Navbar End -->
@@ -121,7 +123,7 @@
                 <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(48, 48, 48, 0.7);">
                     <div class="container">
                         <div class="row justify-content-center">
-                            <div class="col-12 col-lg-8 text-center">
+                            <div class="col-12 col-lg-8 text-center" id="middletext">
                                 <div class="logo-container" id="logoContainer">
                                     <div class="logo">
                                         <div class="gear_container" id="gearContainer">
@@ -132,14 +134,14 @@
                                 </div>                                
                                 <h1 class="display-3 text-white animated slideInDown mb-4">We are Roboticore</h1>
                                 <p class="fs-5 fw-medium text-white mb-4 pb-2">Together we make, together we build, together we win, and winners takes all !</p>
-                                <a href="#about" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">About Us</a>
-                                <a href="#contact" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Contact</a>
+                                <a href="about.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">About Us</a>
+                                <a href="contact.html" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Contact</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="owl-carousel-item position-relative">
+            <!-- <div class="owl-carousel-item position-relative">
                 <img class="img-fluid" src="img/CAR PIC.JPG" alt="">
                 <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(48, 48, 48, 0.7);">
                     <div class="container">
@@ -160,7 +162,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -609,16 +611,16 @@
                         <form>
                             <div class="row g-3">
                                 <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control border-0" placeholder="Your Name" style="height: 55px;">
+                                    <input type="text" id="name" class="form-control border-0" placeholder="Your Name" style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="email" class="form-control border-0" placeholder="Your Email" style="height: 55px;">
+                                    <input type="email" id="email" class="form-control border-0" placeholder="Your Email" style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control border-0" placeholder="Your Mobile" style="height: 55px;">
+                                    <input type="text" id="mobile" class="form-control border-0" placeholder="Your Mobile" style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <select class="form-select border-0" style="height: 55px;">
+                                    <select class="form-select border-0" style="height: 55px;" id="object">
                                         <option selected>Your Object</option>
                                         <option value="1">Collaboration</option>
                                         <option value="2">Sponsorship</option>
@@ -626,10 +628,10 @@
                                     </select>
                                 </div>
                                 <div class="col-12">
-                                    <textarea class="form-control border-0" placeholder="Your text here"></textarea>
+                                    <textarea class="form-control border-0" id="message" placeholder="Your text here"></textarea>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                                    <button class="btn btn-primary w-100 py-3" type="submit" >Submit</button>
                                 </div>
                             </div>
                         </form>
@@ -768,8 +770,8 @@
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-light mb-4">Address</h4>
                     <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Ensam Rabat, Morocco</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+212 xxx xxxxx</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>roboticore@gmail.com</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+212663424356</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>clubroboticore2@gmail.com</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/clubroboticore/" target="_blank"><i class="fab fa-instagram"></i></a>
                         <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/RobotiCore" target="_blank"><i class="fab fa-facebook-f"></i></a>
@@ -779,11 +781,11 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-light mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="#about">About Us</a>
-                    <a class="btn btn-link" href="#events">Events</a>
-                    <a class="btn btn-link" href="#achievements">Achievements</a>
-                    <a class="btn btn-link" href="#projects">Projects</a>
-                    <a class="btn btn-link" href="#team">Team</a>
+                    <a class="btn btn-link" href="about.html">About Us</a>
+                    <a class="btn btn-link" href="events.html">Events</a>
+                    <a class="btn btn-link" href="achievements.html">Achievements</a>
+                    <a class="btn btn-link" href="projects.html">Projects</a>
+                    <a class="btn btn-link" href="team.html">Team</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-light mb-4">Similar to Us</h4>
@@ -836,6 +838,70 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script src="js/script.js"></script>
+    <script >
+        function sendMail(event) {
+            event.preventDefault(); // Prevent default form submission
+        
+            var objectValue = document.getElementById("object").value;
+            var objectText = "";
+        
+            // Map object values to their respective strings
+            switch (objectValue) {
+                case "1":
+                    objectText = "Collaboration";
+                    break;
+                case "2":
+                    objectText = "Sponsorship";
+                    break;
+                case "3":
+                    objectText = "Other";
+                    break;
+                default:
+                    objectText = "Unknown";
+            }
+        
+            var params = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                mobile: document.getElementById("mobile").value, // Include mobile in params if needed
+                object: objectText, // Use mapped value for object
+                message: document.getElementById("message").value,
+            };
+        
+            const serviceID = "service_3qhwjes";
+            const templateID = "template_6oy1w36";
+        
+            emailjs.send(serviceID, templateID, params)
+                .then(response => {
+                    document.getElementById("name").value = "";
+                    document.getElementById("email").value = "";
+                    document.getElementById("mobile").value = ""; // Clear mobile field if needed
+                    document.getElementById("object").value = ""; // Clear object field if needed
+                    document.getElementById("message").value = "";
+                    console.log("Success:", response);
+                    alert("Your message has been sent successfully!");
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("Failed to send the message. Please try again.");
+                });
+        }
+        
+        // Attach event listener to form submission
+        document.querySelector("form").addEventListener("submit", sendMail);
+        
+        
+    </script>
+
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("yvTm99zrrbhD7BfJr");
+      })();
+    </script>
 </body>
 
 </html>

@@ -99,3 +99,29 @@
     
 })(jQuery);
 
+function submitEmail() {
+    var email = document.getElementById("emailInput").value;
+    var url = "https://script.google.com/macros/s/AKfycbxVhvDh60HdWv5YoMRvLRGrKiB4mWTbU6QBvluzvUwKIxKMKIOmcVtofoUStDc4sc0v0g/exec"; 
+
+    if (email) {
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({
+          'email': email
+        })
+      })
+      .then(response => response.text())
+      .then(result => {
+        alert('Email submitted successfully!');
+      })
+      .catch(error => {
+        alert('Error submitting email.');
+        console.error('Error:', error);
+      });
+    } else {
+      alert("Please enter a valid email.");
+    }
+  }
