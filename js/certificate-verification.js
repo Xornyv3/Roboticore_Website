@@ -17,7 +17,12 @@ const validCertificates = {
 // Check if the ID matches any valid certificate
 if (validCertificates[id]) {
     const certificate = validCertificates[id];
-    document.getElementById('verification-message').innerText = certificate.message;
+    const verificationMessage = document.getElementById('verification-message');
+
+    // Set the message and assign a new ID for valid certificates
+    verificationMessage.innerText = certificate.message;
+    verificationMessage.id = 'verified-certificate';
+
     document.getElementById('certificate-image').src = certificate.imageUrl;
 
     // Set the download link
@@ -46,7 +51,12 @@ if (validCertificates[id]) {
     document.getElementById('info-box').style.display = 'block';
     document.getElementById('certificate-buttons').style.display = 'flex'; // Ensure flex display for buttons
 } else {
-    document.getElementById('verification-message').innerText = 'Invalid Certificate!';
+    const verificationMessage = document.getElementById('verification-message');
+
+    // Set the message and assign a new ID for invalid certificates
+    verificationMessage.innerText = 'Invalid Certificate!';
+    verificationMessage.id = 'invalid-certificate';
+
     document.getElementById('info-box').style.display = 'none';
     document.getElementById('certificate-buttons').style.display = 'none'; // Hide buttons for invalid certificates
 }
