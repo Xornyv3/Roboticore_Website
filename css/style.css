@@ -197,6 +197,21 @@
     margin-top: 30px;
 }
 
+ #verification-message {
+      display: flex;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      color: #2e7d32; /* Dark green text */
+    }
+
+    #verification-message::before {
+      content: '\2714'; /* Unicode for checkmark */
+      font-size: 1.5rem;
+      color: #4caf50; /* Green icon */
+      margin-right: 10px;
+    }
+
 
 
 
