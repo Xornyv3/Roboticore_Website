@@ -103,36 +103,36 @@
 }
 
 #invalid-certificate {
-      display: flex;
-      align-items: center;
-      text-align: center;
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.2rem;
-      color: #d32f2f; /* Dark red text */
+      display: flex !important;
+      align-items: center !important;
+      text-align: center !important;
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 1.2rem !important;
+      color: #d32f2f !important; /* Dark red text */
 }
 
 #invalid-certificate::before {
-      content: '\26A0'; /* Unicode for warning symbol */
-      font-size: 1.5rem;
-      text-align: center;
-      color: #f44336; /* Red icon */
-      margin-right: 10px;
+      content: '\26A0' !important; /* Unicode for warning symbol */
+      font-size: 1.5rem !important;
+      text-align: center !important;
+      color: #f44336 !important; /* Red icon */
+      margin-right: 10px !important;
 }
 #verified-certificate {
-      display: flex;
-      align-items: center;
-      text-align: center;
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.2rem;
-      color: #2e7d32; /* Dark green text */
+      display: flex !important;
+      align-items: center !important;
+      text-align: center !important;
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 1.2rem !important;
+      color: #2e7d32 !important; /* Dark green text */
 }
 
 #verified-certificate::before {
-      content: '\2714'; /* Unicode for checkmark */
-      font-size: 1.5rem;
-      text-align: center;
-      color: #4caf50; /* Green icon */
-      margin-right: 10px;
+      content: '\2714' !important; /* Unicode for checkmark */
+      font-size: 1.5rem !important;
+      text-align: center !important;
+      color: #4caf50 !important; /* Green icon */
+      margin-right: 10px !important;
 }
 
 /*** Spinner ***/
